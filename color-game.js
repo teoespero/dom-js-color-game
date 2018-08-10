@@ -14,7 +14,20 @@ var colors = [
 		]
 
 var squares = document.querySelectorAll(".square");
+var pickedColor = colors[3];
+var colorDisplay = document.getElementById("colorDisplay");
+
+colorDisplay.textContent = pickedColor;
 
 for (var counter = 0; counter < squares.length; counter++){
+
+	// add initial colors
 	squares[counter].style.backgroundColor = colors[counter];
+
+	// add click listeners
+	squares[counter].addEventListener("click", function(){
+		alert("Clicked a square");
+	});
 }
+
+
