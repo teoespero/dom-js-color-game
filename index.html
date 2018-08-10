@@ -1,0 +1,164 @@
+<!-- 	
+	Teo Espero
+	BS Cloud and Systems Administration
+	Western Governors University
+
+	#Web-Dev-Bootcamp-Udemy
+-->
+
+<! DOCTYPE html>
+<html lang="en">
+<html>
+	<head>	
+			<link href="normalize.css" rel="stylesheet" type="text/css">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+			<script type="text/javascript" src="bootstrap.js"></script>
+			<link href="bootstrap.css" rel="stylesheet" type="text/css">
+			<link href="myCSS.css" rel="stylesheet" type="text/css">
+			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+			<link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+			<meta charset="utf-8">
+			<title>teoespero.com | Javascript Programming - To Do List </title>
+			<meta name="description" content="">
+  			<meta name="author" content="teoespero">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-sm-6">
+					<table class="table table-hover">
+						<tr>
+							<td colspan="3">
+								<h1>To Do List Example</h1>
+							</td>
+						</tr>
+						<tr>
+							<th><label>Event</label></th>
+							<th><label>Date</label></th>
+							<th><label>Location</label></th>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" id="whatToDo" value="">
+							</td>
+							<td>
+								<input type="date" id="whenToDo"  value="">
+							</td>
+							<td>
+								<input type="text" id="whereToDo" value="">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<button id="addItem" class="btn btn-default btn-primary active">
+									<i class="fas fa-plus"></i>  Add This Item
+								</button>
+							</td>
+							<td>
+								<button id="markAsDone" class="btn btn-default ">
+									<i class="fas fa-check"></i> Mark As Done
+								</button>
+							</td>
+							<td>
+								<button id="removeItem" class="btn btn-default">
+									<i class="fas fa-trash-alt"></i>  Remove Item
+								</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-4 col-sm-6">
+					<table class="table table-hover" id="myList">
+						<tr>
+							<th><label></label></th>
+							<th><label>Event</label></th>
+							<th><label>Date</label></th>
+							<th><label>Location</label></th>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+
+			
+			var itemNumber = 0
+			var currentRow = 0;
+			var selectedRow = 0;
+
+			// function theIndex(theRow){
+			// 	selectedRow = theRow;
+			// }
+
+			document.getElementById("addItem").addEventListener("click", function(){
+
+				if (document.getElementById('whatToDo').value != ""){
+					currentRow++;
+
+					var table = document.getElementById('myList');
+					var row = table.insertRow(currentRow);
+					var cell1 = row.insertCell(0);
+					var cell2 = row.insertCell(1);
+					var cell3 = row.insertCell(2);
+					var cell4 = row.insertCell(3);
+
+					itemNumber++;
+					// alert(currentRow);
+					// cell1.innerHTML = itemNumber;
+					cell2.innerHTML = document.getElementById('whatToDo').value;
+	    			cell3.innerHTML = document.getElementById('whenToDo').value;
+	    			cell4.innerHTML = document.getElementById('whereToDo').value;
+
+	    			row.addEventListener('click', function(e) {
+					    document.querySelectorAll('tr[selected]').forEach(function(item) {
+					        item.removeAttr('selected');
+					    })
+					    row.setAttribute('selected', true);
+					});
+
+	    			document.getElementById('whatToDo').value = "";
+	    			document.getElementById('whenToDo').value = "";
+	    			document.getElementById('whereToDo').value = "";
+    			}
+			});
+
+
+			document.getElementById("removeItem").addEventListener("click", function(){
+
+				// var theRow = document.getElementById('whatToMark').value;
+				var rSelected = document.querySelector('tr[selected]');
+				var theRow = (rSelected == null) ? 0 : rSelected.rowIndex;
+
+				if (theRow > 0){
+
+					document.getElementById("myList").deleteRow(theRow);
+					// document.getElementById('whatToMark').value = "";
+					currentRow--;
+					itemNumber--;
+				}
+				// selectedRow = 0;
+			});
+
+			document.getElementById("markAsDone").addEventListener("click", function(){
+
+				// var theRow = document.getElementById('whatToMark').value;
+				var rSelected = document.querySelector('tr[selected]');
+				var theRow = (rSelected == null) ? 0 : rSelected.rowIndex;
+
+				
+				var table = document.getElementById('myList');
+				if (theRow != 0){
+
+					table.rows[theRow].style.setProperty("text-decoration", "line-through");
+					table.rows[theRow].style.setProperty("opacity", "0.5");
+					// document.getElementById('whatToMark').value = "";
+				}
+
+				// selectedRow = 0;
+			});
+
+		</script>
+	</body>
+</html>

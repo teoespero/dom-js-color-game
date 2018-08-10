@@ -1,0 +1,36 @@
+body {
+	text-align: center;
+	font-family: 'Raleway', sans-serif;
+}
+
+h1 {
+	font-weight: bolder;
+	font-size: 2em;
+}
+
+.thumbnail {
+    border: 0 none;
+    box-shadow: none;
+}
+
+#jumbo {
+  padding: 5px;
+}
+
+.padded {
+  padding: 5px;
+}
+
+button{
+  margin: 8px;
+}
+
+
+.table > tbody > tr > td {
+     vertical-align: middle;
+}
+
+tr.strikeout td:after {
+  content: "\00B7";
+  font-size: 1px;
+}
