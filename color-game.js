@@ -4,18 +4,13 @@
 
 	// #Web-Dev-Bootcamp-Udemy
 
-var colors = [
-			"rgb(255,0,0)",
-			"rgb(255,255,0)",
-			"rgb(0,255,0)",
-			"rgb(0,255,255)",
-			"rgb(0,0,255)",
-			"rgb(255,0,255)"
-		]
+var colors = generateRandomColors(6);
 
 var squares = document.querySelectorAll(".square");
-var pickedColor = colors[3];
+var pickedColor = pickColor();
 var colorDisplay = document.getElementById("colorDisplay");
+var messageDsiplay = document.querySelector("#message");
+
 
 colorDisplay.textContent = pickedColor;
 
@@ -26,8 +21,92 @@ for (var counter = 0; counter < squares.length; counter++){
 
 	// add click listeners
 	squares[counter].addEventListener("click", function(){
-		alert("Clicked a square");
+		// alert("Clicked a square");
+
+		// grab color of clicked square
+		// alert(this.style.backgroundColor);
+
+		var clickedColor = this.style.backgroundColor;
+
+		if (clickedColor === pickedColor){
+			
+			// if the user clicks on the right 
+			// color.
+
+			messageDsiplay.textContent = "Correct";
+
+			// then change all the squares to
+			// the color that was picked
+
+			changeColors(clickedColor);
+
+		}
+		else {
+
+			// if the player clicks on the wrong color
+			// the square color should fade away
+			// blending in with the background color
+
+			this.style.backgroundColor = "#232323";
+			messageDsiplay.textContent = "Try again";
+		}
+
 	});
 }
 
 
+function changeColors(color){
+
+	// loop through all the squares
+	// to match all the colors;
+
+	for (var counter = 0; counter < squares.length; counter++){
+		squares[counter].style.backgroundColor = color;
+	}
+
+}
+
+
+function pickColor(){
+	var randomRGB = Math.floor(Math.random() * colors.length);
+
+	return colors[randomRGB];
+
+}
+
+function generateRandomColors(num){
+
+	// make an array
+	var arrBase = [];
+
+	// add num random colors to array
+	for (var counter = 0; counter < num; counter++){
+
+		// get random colors and push it
+		// into the array arrBase
+
+		arrBase.push(randomColor());
+	}
+
+	// return that array
+
+	return arrBase;
+}
+
+function randomColor(){
+
+	// pick a red from 0 - 255
+
+	var r = Math.floor(Math.random() * 256);
+
+	// pick a green from 0 - 255
+
+	var g = Math.floor(Math.random() * 256);
+
+	// pick a blue from 0 - 255
+
+	var b = Math.floor(Math.random() * 256);
+
+	// return our color combo
+	return "rgb(" + r + ", " + g + ", " + b + ")";
+}
