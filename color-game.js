@@ -13,7 +13,7 @@
 // player is on - HARD (6) or EASY (3)
 var numberOfSquares = 6;
 
-
+// the vars declared here sets the defaults on the system
 var colors = generateRandomColors(numberOfSquares);
 var squares = document.querySelectorAll(".square");
 var pickedColor = pickColor();
@@ -26,6 +26,7 @@ var btnHard = document.querySelector("#btnHard");
 
 
 
+// EASY mode (3 colors)
 btnEasy.addEventListener("click", function(){
 
 	// set the mode
@@ -59,6 +60,7 @@ btnEasy.addEventListener("click", function(){
 	}
 });
 
+// HARD mode (6 colors)
 btnHard.addEventListener("click", function(){
 
 	// set the mode
@@ -105,7 +107,7 @@ resetButton.addEventListener("click", function(){
 	for (var counter = 0; counter < squares.length; counter++){
 		squares[counter].style.backgroundColor = colors[counter];
 	}
-	h1.style.backgroundColor = "#232323";
+	h1.style.backgroundColor = "steelblue";
 });
 
 colorDisplay.textContent = pickedColor;
