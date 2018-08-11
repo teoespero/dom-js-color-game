@@ -35,3 +35,7 @@ span {
 	text-align: center;
 	color: black;
 }
+
+.selected {
+	background: blue;
+}

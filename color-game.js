@@ -4,18 +4,96 @@
 
 	// #Web-Dev-Bootcamp-Udemy
 
-var colors = generateRandomColors(6);
+//----------------------------------------------------------------------------
+// Main code
+//----------------------------------------------------------------------------
+
+
+// this var tracks which mode the
+// player is on - HARD (6) or EASY (3)
+var numberOfSquares = 6;
+
+
+var colors = generateRandomColors(numberOfSquares);
 var squares = document.querySelectorAll(".square");
 var pickedColor = pickColor();
 var colorDisplay = document.getElementById("colorDisplay");
 var messageDsiplay = document.querySelector("#message");
 var h1 = document.querySelector("h1");
 var resetButton = document.querySelector("#resetGame");
+var btnEasy = document.querySelector("#btnEasy");
+var btnHard = document.querySelector("#btnHard");
+
+
+
+btnEasy.addEventListener("click", function(){
+
+	// set the mode
+	numberOfSquares = 3;
+
+	// un-select HARD and set the active state 
+	// to the EASY button
+	btnHard.classList.remove("selected");
+	btnEasy.classList.add("selected");
+
+	// generate 3 new colors
+	colors = generateRandomColors(numberOfSquares);
+
+	// make a new picked color
+	pickedColor = pickColor();
+
+	// update the pciked color message
+	colorDisplay.textContent = pickedColor;
+
+	for (var i = 0; i < squares.length; i++){
+
+		// update only the first three 
+		// squares
+		if (colors[i]){
+			squares[i].style.background = colors[i];
+		}
+		// hide the other squares
+		else {
+			squares[i].style.display = "none";
+		}
+	}
+});
+
+btnHard.addEventListener("click", function(){
+
+	// set the mode
+	numberOfSquares = 6;
+
+	// un-select EASY and set the active state 
+	// to the HARD button
+	btnEasy.classList.remove("selected");
+	btnHard.classList.add("selected");
+
+	// generate 6 new colors
+	colors = generateRandomColors(numberOfSquares);
+
+	// make a new picked color
+	pickedColor = pickColor();
+
+	// update the pciked color message
+	colorDisplay.textContent = pickedColor;
+
+	for (var i = 0; i < squares.length; i++){
+
+		// update the six squares
+		squares[i].style.background = colors[i];
+		squares[i].style.display = "block";
+	}
+
+});
+
+
 
 resetButton.addEventListener("click", function(){
 
 	// re-generate all new colors
-	colors = generateRandomColors(6);
+	// base on the last mode set
+	colors = generateRandomColors(numberOfSquares);
 
 	// pick a new random color from array
 	pickedColor = pickColor();
@@ -74,6 +152,10 @@ for (var counter = 0; counter < squares.length; counter++){
 	});
 }
 
+
+//----------------------------------------------------------------------------
+// Functions
+//----------------------------------------------------------------------------
 
 function changeColors(color){
 
