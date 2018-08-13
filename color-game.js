@@ -18,7 +18,7 @@ var colors = generateRandomColors(numberOfSquares);
 var squares = document.querySelectorAll(".square");
 var pickedColor = pickColor();
 var colorDisplay = document.getElementById("colorDisplay");
-var messageDsiplay = document.querySelector("#message");
+var messageDisplay = document.getElementById("message");
 var h1 = document.querySelector("h1");
 var resetButton = document.querySelector("#resetGame");
 var btnEasy = document.querySelector("#btnEasy");
@@ -108,7 +108,7 @@ resetButton.addEventListener("click", function(){
 		squares[counter].style.backgroundColor = colors[counter];
 	}
 	h1.style.backgroundColor = "steelblue";
-	messageDsiplay.textContent = "";
+	messageDisplay.textContent = "";
 	this.textContent = "New Colors"
 });
 
@@ -132,7 +132,9 @@ for (var counter = 0; counter < squares.length; counter++){
 			
 			// if the user clicks on the right 
 			// color.
-			messageDsiplay.textContent = "Correct";
+			h1.style.backgroundColor = "steelblue";
+			messageDisplay.style.color = pickedColor;
+			messageDisplay.textContent = "Correct";
 
 			// then change all the squares to
 			// the color that was picked
@@ -150,7 +152,8 @@ for (var counter = 0; counter < squares.length; counter++){
 			// the square color should fade away
 			// blending in with the background color
 			this.style.backgroundColor = "#232323";
-			messageDsiplay.textContent = "Try again";
+			messageDisplay.style.color = clickedColor;
+			messageDisplay.textContent = "Try again";
 		}
 
 	});
